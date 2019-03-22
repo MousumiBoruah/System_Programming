@@ -2,11 +2,11 @@
 #include<stdlib.h>
 #include<string.h>
 int main(){
-	FILE *f_source = fopen("sicfile.txt","r");
-	FILE *f_inter = fopen("intermediate.txt","a+");
-	FILE *f_opcode = fopen("opcode.txt","r");
-	FILE *f_sym = fopen("symbol_table.txt","a+");
-	FILE *fp1 = fopen("opcode.txt","r");
+    FILE *f_source = fopen("sicfile.txt","r");
+    FILE *f_inter = fopen("intermediate.txt","a+");
+    FILE *f_opcode = fopen("opcode.txt","r");
+    FILE *f_sym = fopen("symbol_table.txt","a+");
+    FILE *fp1 = fopen("opcode.txt","r");
     FILE *fp3 = fopen("first.txt","a+");
     FILE *fp4 = fopen("second.txt","a+");
     FILE *fp5 = fopen("mnemonicsopcode.txt" , "a+");
@@ -131,7 +131,7 @@ int main(){
    	 		    }
    	 		    else{
    	 		    	if(strcmp(label_2,lbl) == 0){
-   	 		    		  disp = loc_1 - x;
+   	 		    		  disp = loc_1;
    	 		    		  displacement = disp;
    	 					while(disp >= 16)
    	 						disp=disp/16;
