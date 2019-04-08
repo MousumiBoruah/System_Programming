@@ -9,22 +9,21 @@ int main(){
 	int start_add,len,size,loc,i=0,j=0,x,m,temp,last,add;
 	//FOR HEADER RECORD
 	fscanf(f_source,"%s %*s %X",name,&start_add);
-	fprintf(f_prog,"H^%s",name);
-	len = strlen(name);
-	if(len){
+	fprintf(f_prog,"H%s",name);
+	len = 6 - strlen(name);
+	while(len){
 		fputc(' ',f_prog);
 		len--;
 	}
-	fprintf(f_prog,"^");
 	while(fscanf(f_obj,"%X\t%*s\t%*s\t%*s\t%*s",&last) == 1);
 	size = last - start_add;
-	fprintf(f_prog,"%.6X^%.6X\n",start_add,size);
+	fprintf(f_prog,"%.6X%.6X\n",start_add,size);
 	rewind(f_obj);
 	//FOR TEXT RECORD
 	while(fscanf(f_obj,"%X\t%*s\t%*s\t%*s\t%s",&loc,obj_cod) == 2){
 		if(strcmp(obj_cod,"NO") != 0 && i == 0){
 			add = loc;
-			fprintf(f_prog,"T^%.6X^",add);
+			fprintf(f_prog,"T%.6X",add);
 			i = 1;
 		}
 		if(strcmp(obj_cod,"NO") != 0 && i > 0 && i <= 10){
@@ -35,9 +34,9 @@ int main(){
 		temp = i;
 		if(strcmp(obj_cod,"NO") == 0 && i > 0 && i <= 10){
 		 	x = 3 * (temp-1);
-		  	fprintf(f_prog,"%.2X^",x);
+		  	fprintf(f_prog,"%.2X",x);
 		  	for(m = 0; m < (temp-1);m++){
-	    		fprintf(f_prog,"%s^",buffer1[m]);
+	    		fprintf(f_prog,"%s",buffer1[m]);
 	    	}
 	    	fprintf(f_prog,"\n");
 	    	j=0;
@@ -45,9 +44,9 @@ int main(){
 		}
 		 else if(temp > 10){
 		 	 x = 3 * (temp-1);
-		  	fprintf(f_prog,"%.2X^",x);
+		  	fprintf(f_prog,"%.2X",x);
 		  	for(m = 0; m < (temp-1);m++){
-	    		fprintf(f_prog,"%s^",buffer1[m]);
+	    		fprintf(f_prog,"%s",buffer1[m]);
 	    	}
 	    	fprintf(f_prog,"\n");
 	    	j=0;
@@ -55,14 +54,14 @@ int main(){
 		  }
 		  else if(loc == last){
 		  	  x = 3 * (temp-1);
-		 	  fprintf(f_prog,"%.2X^",x);
+		 	  fprintf(f_prog,"%.2X",x);
 		  	  for(m = 0; m < (temp-1);m++){
-	    		 fprintf(f_prog,"%s^",buffer1[m]);
+	    		 fprintf(f_prog,"%s",buffer1[m]);
 	    	 	}
 	    	  fprintf(f_prog,"\n");
 		  }
 	    
 	}
 	//FOR END RECORD
-	fprintf(f_prog,"E^%.6X",start_add);
+	fprintf(f_prog,"E%.6X",start_add);
 }
