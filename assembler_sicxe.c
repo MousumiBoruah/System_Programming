@@ -221,7 +221,7 @@ int main(){
 						buffer1[j++] = object_code[i++];
 					}
 					buffer1[j] = '\0';
-					fprintf(f_obj,"%s  %s  %s  %s  %c%c000000\n",temp,label_1,mnemonics,operand, BinToHex(buffer),BinToHex(buffer1));
+					fprintf(f_obj,"%s  %s  %s  %s  %c%c0000\n",temp,label_1,mnemonics,operand, BinToHex(buffer),BinToHex(buffer1));
 
 		}
 	}
