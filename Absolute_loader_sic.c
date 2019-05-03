@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 char input[10],label[10],ch1,ch2;
-int addr, w=0, start, ptaddr, l, length=0, end, count=0, k, taddr, address, i=0;
+int addr, w=0, start, ptaddr, l,temp=0, length=0, end, count=0, k, taddr, address, i=0;
 FILE *fp1,*fp2;
 void check();
 int main()
@@ -10,15 +10,34 @@ int main()
   fp2=fopen("OUTPUT.txt","w");
   fscanf(fp1,"%s",input);
   fprintf(fp2,"\n");
-  fprintf(fp2,"MEMORY ADDRESS\t\t\tCONTENTS\n");
   fprintf(fp2,"\n");
   while(strcmp(input,"E")!=0)
   {
    if(strcmp(input,"H")==0)
    {
     fscanf(fp1,"%s %X %X %s",label,&start,&end,input);
-    address=start;
-    fprintf(fp2,"0000\t - XXXX -\t\t%X\n",start-16);
+    address=0000;
+    if(temp == 0){
+    for(k=0;k<start;k++)
+    {
+     address=address+1;
+     fprintf(fp2,"xx");
+     count++;
+     if(count==4)
+     {
+      fprintf(fp2,"  ");
+      i++;
+      if(i==4)
+      {
+       fprintf(fp2,"\n\n%.4X\t\t",address);
+       i=0;
+      }
+      count=0;
+     }
+    }
+      temp =1;
+    }
+    address = start;
    }
    else if(strcmp(input,"T")==0)
    {
@@ -48,8 +67,6 @@ int main()
       count=0;
      }
     }
-    if(taddr==start)
-    fprintf(fp2,"\n\n%X\t\t",taddr);
     fprintf(fp2,"%c%c",input[0],input[1]);
     check();
     fprintf(fp2,"%c%c",input[2],input[3]);
